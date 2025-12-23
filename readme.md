@@ -21,7 +21,4 @@
     "dialect": "mysql"
   }
 }
-
 ``````````````````
-
-- Once you've added your db config as listed above, go to the root and execute `npx sequelize db:create`
