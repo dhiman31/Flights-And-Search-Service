@@ -25,7 +25,7 @@ const create = async (req , res) => {
 // in REST : DELETE. -> /city/:id  // i.e. in REST you get city id in param
 const destroy = async (req , res) => {
     try {
-        const response = await CityServ.createCity(req.params.id);
+        const response = await CityServ.deleteCity(req.params.id);
         return res.status(200).json({
             data : response,
             success : true,
@@ -46,7 +46,7 @@ const destroy = async (req , res) => {
 //GET -> /city/:id
 const get = async (req , res) => {
     try {
-        const city = await CityServ.createCity(req.params.id);
+        const city = await CityServ.getCity(req.params.id);
         return res.status(200).json({
             data : city,
             success : true,
@@ -67,7 +67,7 @@ const get = async (req , res) => {
 // PATCH -> /city/:id -> req.body
 const update = async (req , res) => {
     try {
-        const city = await CityServ.createCity(req.params.id , req.body);
+        const city = await CityServ.updateCity(req.params.id , req.body);
         return res.status(200).json({
             data : city,
             success : true,
