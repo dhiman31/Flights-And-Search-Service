@@ -40,9 +40,9 @@ class cityService{
             throw {error};
         }
     }
-    async getall(){
+    async getall(filter){
         try {
-            const cities = await this.CityRespository.getall();
+            const cities = await this.CityRespository.getall({name:filter.name});
             return cities;
         } catch (error) {
             console.log("Error occured in city service");
