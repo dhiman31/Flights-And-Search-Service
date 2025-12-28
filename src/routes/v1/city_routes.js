@@ -6,6 +6,7 @@ router.post('/', city_Controller.create); // will be called at POST: /api/v1/cit
 router.delete('/:id',city_Controller.destroy);
 router.get('/:id',city_Controller.get);
 router.get('/',city_Controller.getall);
+router.get('/:id/airports',city_Controller.getCityAirports);
 router.patch('/:id',city_Controller.update);
 
 module.exports = router;

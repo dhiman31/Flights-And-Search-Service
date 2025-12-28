@@ -1,12 +1,22 @@
-const { where } = require('sequelize');
+const { where, Model } = require('sequelize');
 const {City} = require('../models/index');
+const {Airport} = require('../models/index');
 const {Op} = require('sequelize');
 
 class CityRespository{
     // create a row
-    async createCity( {name} ) {  // this function takes an object as argument and here weh have destructured the object and extracted name parameter from that object
+    async createOneCity( {name} ) {  // this function takes an object as argument and here weh have destructured the object and extracted name parameter from that object
         try {
             const city = await City.create( {name} ); // now we will use that name to create city ... City.create() accepts an object with the attributes as its memebers .... the model has name as attribute .... so we have to send an object with one member i.e. name.........we will use name .... {name} : this creates an object then and there with name as its member
+            return city;
+        } catch (error) {
+            console.log("Something went wrong in city repository layer")
+            throw {error};
+        }
+    }
+    async createManyCity( data ) {  
+        try {
+            const city = await City.bulkCreate(data);
             return city;
         } catch (error) {
             console.log("Something went wrong in city repository layer")
@@ -67,6 +77,23 @@ class CityRespository{
             }
             const cities = await City.findAll();
             return cities;
+
+        } catch (error) {
+            console.log("Something went wrong in city repository layer")
+            throw {error};
+        }
+    }
+
+    async getCityAirports(cityId){
+        try {
+            const Airports = City.findByPk(cityId,{
+                include:[
+                    {
+                        model : Airport
+                    }
+                ]
+            });
+            return Airports;
 
         } catch (error) {
             console.log("Something went wrong in city repository layer")
