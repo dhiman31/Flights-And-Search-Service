@@ -3,7 +3,7 @@ const {City} = require('../models/index');
 const {Airport} = require('../models/index');
 const {Op} = require('sequelize');
 
-class CityRespository{
+class CityRepository{
     // create a row
     async createOneCity( {name} ) {  // this function takes an object as argument and here weh have destructured the object and extracted name parameter from that object
         try {
@@ -102,4 +102,4 @@ class CityRespository{
     }
 }
 
-module.exports = CityRespository;
+module.exports = CityRepository;

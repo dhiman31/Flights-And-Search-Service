@@ -1,0 +1,1 @@
+const { FlightMiddlewares } = require('../../middlewares/index');

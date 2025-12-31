@@ -1,21 +1,21 @@
-const {AirportRespository} = require('../repository/index');
+const {AirportRepository} = require('../repository/index');
 
 
 class airportService{
     constructor(){
-        this.AirportRespository = new AirportRespository;
+        this.AirportRepository = new AirportRepository;
     }
 
     async createAirport (data) {
         try {
             if(Array.isArray(data))
             {
-                const airport = await this.AirportRespository.createManyAirport(data);
+                const airport = await this.AirportRepository.createManyAirport(data);
                 return airport;
             }
             else
             {
-                const airport = await this.AirportRespository.createOneAirport(data);
+                const airport = await this.AirportRepository.createOneAirport(data);
                 return airport;
             }
         } catch (error) {
@@ -25,7 +25,7 @@ class airportService{
     }
     async deleteAirport (airportId) {
         try {
-            await this.AirportRespository.deleteAirport(airportId);
+            await this.AirportRepository.deleteAirport(airportId);
         } catch (error) {
             console.log("Error occured in service");
             throw {error};
@@ -33,7 +33,7 @@ class airportService{
     }
     async updateAirport (airportId , data) {
         try {
-            const airport = await this.AirportRespository.updateAirport(airportId , data);
+            const airport = await this.AirportRepository.updateAirport(airportId , data);
             return airport;
         } catch (error) {
             console.log("Error occured in service");
@@ -42,7 +42,7 @@ class airportService{
     }
     async getAirport (airportId) {
         try {
-            const airport = await this.AirportRespository.getAirport(airportId);
+            const airport = await this.AirportRepository.getAirport(airportId);
             return airport;
         } catch (error) {
             console.log("Error occured in service");

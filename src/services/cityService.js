@@ -1,20 +1,20 @@
-const {CityRespository} = require('../repository/index');
+const {CityRepository} = require('../repository/index');
 
 class cityService{
     constructor(){
-        this.CityRespository = new CityRespository;
+        this.CityRepository = new CityRepository;
     }
 
     async createCity (data) {
         try {
             if(Array.isArray(data))
             {
-                const city = await this.CityRespository.createManyCity(data);
+                const city = await this.CityRepository.createManyCity(data);
                 return city;
             }
             else
             {
-                const city = await this.CityRespository.createOneCity(data);
+                const city = await this.CityRepository.createOneCity(data);
                 return city;
             }
         } catch (error) {
@@ -24,7 +24,7 @@ class cityService{
     }
     async deleteCity (cityId) {
         try {
-            await this.CityRespository.deleteCity(cityId);
+            await this.CityRepository.deleteCity(cityId);
         } catch (error) {
             console.log("Error occured in city service");
             throw {error};
@@ -32,7 +32,7 @@ class cityService{
     }
     async updateCity (cityId , data) {
         try {
-            const city = await this.CityRespository.updateCity(cityId , data);
+            const city = await this.CityRepository.updateCity(cityId , data);
             return city;
         } catch (error) {
             console.log("Error occured in city service");
@@ -41,7 +41,7 @@ class cityService{
     }
     async getCity (cityId) {
         try {
-            const city = await this.CityRespository.getCity(cityId);
+            const city = await this.CityRepository.getCity(cityId);
             return city;
         } catch (error) {
             console.log("Error occured in city service");
@@ -50,7 +50,7 @@ class cityService{
     }
     async getall(filter){
         try {
-            const cities = await this.CityRespository.getall({name:filter.name});
+            const cities = await this.CityRepository.getall({name:filter.name});
             return cities;
         } catch (error) {
             console.log("Error occured in city service");
@@ -60,7 +60,7 @@ class cityService{
 
     async getCityAirports(cityId){
         try {
-            const Airports = await this.CityRespository.getCityAirports(cityId);
+            const Airports = await this.CityRepository.getCityAirports(cityId);
             return Airports;
         } catch (error) {
             console.log("Error occured in city service");
