@@ -71,7 +71,8 @@ class CityRepository{
                         name:{
                             [Op.startsWith] : filter.name
                         }
-                    }
+                    },
+                    limit: 5
                 });
                 return cities;
             }
@@ -100,6 +101,7 @@ class CityRepository{
             throw {error};
         }
     }
+
 }
 
 module.exports = CityRepository;

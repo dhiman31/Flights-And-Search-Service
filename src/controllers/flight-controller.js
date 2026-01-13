@@ -38,10 +38,23 @@ const create = async (req, res) => {
 
 const getAll = async (req, res) => {
     try {
-        console.log(req.query);
-        const response = await flightService.getAllFlightData(req.query);
+        const flights = await flightService.getAllFlightData(req.query);
+
+        const formatted = flights.map(f => ({
+            departureAirport: f.departureAirport.name,
+            departureCity: f.departureAirport.City.name,
+            arrivalAirport: f.arrivalAirport.name,
+            arrivalCity: f.arrivalAirport.City.name,
+            departureTime: f.departureTime,
+            arrivalTime: f.arrivalTime,
+            price: f.price,
+            availableSeats: f.totalSeats,
+            flightId : f.id,
+            flightNumber : f.flightNumber
+        }));
+
         return res.status(SuccessCodes.OK).json({
-            data: response,
+            data: formatted,
             success: true,
             err: {},
             message: 'Successfully fetched the flights'

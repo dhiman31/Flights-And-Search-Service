@@ -37,7 +37,8 @@ class FlightService {
 
     async getAllFlightData(data) {
         try {
-            const flights = await this.flightRepository.getAllFlights(data);
+            const flights = await this.flightRepository.searchFlights(data)
+            console.log(flights);
             return flights;
         } catch (error) {
             console.log("Something went wrong at service layer");
